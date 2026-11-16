@@ -10,6 +10,7 @@ npm start          # serve the production build locally
 ```
 
 **Contents**
+> Want to know *how* the 3D, animations and every section work, and why each tool was chosen? See **[ARCHITECTURE.md](./ARCHITECTURE.md)**.
 1. [Editing your content](#1-editing-your-content--contentcontentts)
 2. [Going live: full setup & deploy guide](#2-going-live-full-setup--deploy-guide)
 3. [Updating the live site later](#3-updating-the-live-site-later)
