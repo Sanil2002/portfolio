@@ -17,7 +17,7 @@ import { EasterEgg } from "@/components/ui/EasterEgg";
 const anton = Anton({ weight: "400", subsets: ["latin"], variable: "--font-anton", display: "swap" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+import { siteUrl } from "@/lib/site";
 
 const title = `${profile.name} — ${profile.role}`;
 const description = `${profile.tagline} ${profile.bio[0]}`;

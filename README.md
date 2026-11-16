@@ -179,6 +179,12 @@ Still on the import screen, open **Environment Variables** and add:
 
 Click **Deploy**. Wait ~1–2 minutes for "Congratulations!". Click the preview to open your live site.
 
+> **Type must be "Config", not "Secret".** Vercel shows *"Remove the public framework prefix to keep this value private…"* if you pick Secret. `NEXT_PUBLIC_` variables are intentionally visible in the browser (the site URL and Formspree ID are public by design), so choose **Config**. Keep the `NEXT_PUBLIC_` prefix, because the site can't read the value without it. No trailing slash on the URL.
+>
+> **Already saved one as Secret?** It can't be switched to Config. Click **⋯ → Remove** on it, then **Add New** again and pick **Config** *before* saving.
+>
+> `NEXT_PUBLIC_SITE_URL` is optional on Vercel: if it isn't set, the site automatically uses your Vercel production domain. Only `NEXT_PUBLIC_FORMSPREE_ID` is required.
+
 ### Step 7 — Rename your URL (optional but nicer)
 Vercel → your project → **Settings → Domains**. Edit the `*.vercel.app` domain to something like `sanil-m.vercel.app` (must be free). Note the final URL.
 
