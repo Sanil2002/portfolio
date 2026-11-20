@@ -13,6 +13,8 @@ export function Cursor() {
   const [label, setLabel] = useState("");
   const [hot, setHot] = useState(false);
   const [down, setDown] = useState(false);
+  // Over orange surfaces the cursor switches to ink so it stays visible.
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -37,6 +39,7 @@ export function Cursor() {
       const labelled = t.closest<HTMLElement>("[data-cursor]");
       setLabel(labelled?.dataset.cursor ?? "");
       setHot(!!t.closest("a, button, [role=button], input, textarea, label, summary"));
+      setDark(!!t.closest("[data-cursor-dark], .bg-blaze"));
     };
     const pd = () => setDown(true);
     const pu = () => setDown(false);
@@ -67,24 +70,25 @@ export function Cursor() {
       <div
         ref={ring}
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[300] flex items-center justify-center rounded-full border transition-[width,height,background-color,border-color] duration-300 ease-[var(--ease-expo)]"
+        // Above modals (350) and confetti (400).
+        className="pointer-events-none fixed left-0 top-0 z-[500] flex items-center justify-center rounded-full border transition-[width,height,background-color,border-color] duration-300 ease-[var(--ease-expo)]"
         style={{
           width: size,
           height: size,
           marginLeft: -size / 2,
           marginTop: -size / 2,
           transform: "translate3d(-100px,-100px,0)",
-          borderColor: label ? "transparent" : "rgba(242,237,228,.5)",
-          background: label ? "#ff5b1f" : hot ? "rgba(255,91,31,.12)" : "transparent",
+          borderColor: label ? "transparent" : dark ? "rgba(14,14,12,.6)" : "rgba(242,237,228,.5)",
+          background: label ? (dark ? "#0e0e0c" : "#ff5b1f") : hot ? (dark ? "rgba(14,14,12,.15)" : "rgba(255,91,31,.12)") : "transparent",
           scale: down ? 0.85 : 1,
         }}
       >
-        <span className="text-[11px] font-semibold uppercase tracking-widest text-ink">{label}</span>
+        <span className={`text-[11px] font-semibold uppercase tracking-widest ${dark ? "text-blaze" : "text-ink"}`}>{label}</span>
       </div>
       <div
         ref={dot}
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[301] -ml-[3px] -mt-[3px] h-[6px] w-[6px] rounded-full bg-blaze transition-opacity"
+        className={`pointer-events-none fixed left-0 top-0 z-[501] -ml-[3px] -mt-[3px] h-[6px] w-[6px] rounded-full transition-[opacity,background-color] ${dark ? "bg-ink" : "bg-blaze"}`}
         style={{ transform: "translate3d(-100px,-100px,0)", opacity: label ? 0 : 1 }}
       />
     </>

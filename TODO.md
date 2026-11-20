@@ -12,7 +12,7 @@ Things only you can do or decide. Everything else is built.
 - [ ] **Code Explainer** & **Interview Practice** `stack` — I only listed what the live sites show (Groq, Gemini, Vercel). Add the framework you used (Next.js? React?).
 - [ ] **MailMind AI** — description says Gmail *and* Outlook (your wording); the repo README only mentions Gmail. Adjust if Outlook isn't shipped yet.
 - [ ] Personal projects `role` is set to "Solo developer" — confirm.
-- [ ] `featured: true` is on **Civic AI**. Move it to another project if you prefer (featured always sorts first).
+- [ ] `featured: true` is on **RAG Model Builder**. Move it to another project if you prefer (featured always sorts first).
 - [ ] `profile.bio` — drafted from your resume; edit freely.
 
 ## Optional upgrades

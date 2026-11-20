@@ -124,7 +124,7 @@ export function Contact() {
                       onChange={set("message")}
                       aria-invalid={!!errors.message}
                       aria-describedby={errors.message ? "c-message-err" : undefined}
-                      placeholder="Tell me about the role or project…"
+                      placeholder={contact.messagePlaceholder}
                       className={`${field} resize-y ${errors.message ? "border-blaze" : "border-bone/10"}`}
                     />
                     {errors.message && <p id="c-message-err" className="mt-2 text-sm text-blaze">{errors.message}</p>}

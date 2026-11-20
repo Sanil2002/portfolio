@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { profile } from "@/content/content";
+import { contact, profile } from "@/content/content";
 import { bezier } from "@/lib/motion";
 import { scrollTo } from "@/providers/SmoothScroll";
 
@@ -41,7 +41,7 @@ export function StickyCta() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blaze opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-blaze" />
               </span>
-              <span className="truncate"><span className="hidden sm:inline">{profile.availability} — </span>Let&apos;s work together</span>
+              <span className="truncate"><span className="hidden sm:inline">{profile.availability} — </span>{contact.ctaLine}</span>
             </p>
             {onHome ? (
               <button type="button" onClick={() => scrollTo("#contact")} className="shrink-0 rounded-full bg-blaze px-5 py-3 text-xs font-semibold uppercase tracking-widest text-ink transition-transform hover:scale-105">

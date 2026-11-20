@@ -26,8 +26,8 @@ const motifs = {
 };
 
 const items = [
-  ["civic-ai", "CIVIC AI", "AI MODEL BUILDER", "nodes", 0],
-  ["spectrotel", "SPECTROTEL", "TELECOM OPS PORTAL", "grid", 1],
+  ["rag-model-builder", "RAG MODEL BUILDER", "CONTEXT-AWARE AI", "nodes", 0],
+  ["enterprise-network-intelligence-platform", "ENTERPRISE NETWORK INTELLIGENCE PLATFORM", "TELECOM OPS PORTAL", "grid", 1],
   ["bookncal", "BOOKNCAL", "MEETING SCHEDULER", "calendar", 2],
   ["code-explainer", "CODE EXPLAINER", "AI CODE WALKTHROUGHS", "code", 0],
   ["interview-practice", "INTERVIEW PRACTICE", "AI MOCK INTERVIEWS", "chat", 1],
@@ -48,7 +48,7 @@ items.forEach(([slug, title, sub, motif, t], n) => {
   for (const alt of [false, true]) {
     const th = alt ? { bg: themes[t].fg === INK ? INK : BLAZE, fg: themes[t].fg === INK ? BLAZE : INK, motif: themes[t].fg === INK ? BLAZE : INK } : themes[t];
     const words = title.split(" ");
-    const size = title.length > 12 ? 150 : 190;
+    const size = title.length > 24 ? 118 : title.length > 12 ? 150 : 190;
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
   <rect width="1600" height="1000" fill="${th.bg}"/>
   <g transform="translate(${alt ? 880 : 900} ${alt ? 220 : 200}) rotate(${alt ? -8 : 0} 300 300)" opacity="${alt ? 1 : 0.9}">${motifs[motif](th.motif)}</g>

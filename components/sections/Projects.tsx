@@ -90,7 +90,7 @@ export function Projects() {
           <p className="mb-4 text-xs uppercase tracking-[0.3em] text-mute">Selected work · {ordered.length} projects</p>
           <TextReveal as="h2" text="THINGS I'VE SHIPPED." accent={["SHIPPED."]} className="display text-[clamp(3rem,9vw,16rem)]" />
           <p className="mt-6 max-w-[30rem] text-bone/70">
-            AI tools I&apos;ve built on my own, plus production work shipped at Netstratum. Hover a card to load it on the screen.
+            AI tools I&apos;ve built on my own, plus production platforms delivered for clients. Hover a card to load it on the screen.
           </p>
         </div>
 

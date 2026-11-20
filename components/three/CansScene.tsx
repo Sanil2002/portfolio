@@ -138,8 +138,10 @@ function PhysicsCans({ cans, active, onSelect }: Omit<Props, "staticMode">) {
             key={c.id}
             ref={(r) => { bodies.current[i] = r; }}
             colliders={false}
-            // Staggered drop, all spawned below the ceiling.
-            position={[x, h / 2 + 1.5 + i * 1.2, 0]}
+            // Spawn just above the frame with a small stagger and a downward
+            // kick, so they land within ~0.5s of the section appearing.
+            position={[x, h / 2 + H / 2 + 0.2 + i * 0.45, 0]}
+            linearVelocity={[0, -9, 0]}
             rotation={[0, 0, (i % 2 ? 1 : -1) * 0.08]}
             enabledTranslations={[true, true, false]}
             enabledRotations={[false, false, true]}
@@ -200,14 +202,16 @@ export default function CansScene(props: Props) {
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Mount physics only once the section is near (cans "drop in"), pause when offscreen.
+  // Mount (and load physics WASM) well before the section scrolls in, so the
+  // cans are ready to drop the moment it appears. Physics stays paused until visible.
   useEffect(() => {
-    const io = new IntersectionObserver(([e]) => {
-      setVisible(e.isIntersecting);
-      if (e.isIntersecting) setMounted(true);
-    }, { threshold: 0.15 });
-    if (wrap.current) io.observe(wrap.current);
-    return () => io.disconnect();
+    const el = wrap.current;
+    if (!el) return;
+    const pre = new IntersectionObserver(([e]) => { if (e.isIntersecting) setMounted(true); }, { rootMargin: "1000px 0px" });
+    const vis = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.05 });
+    pre.observe(el);
+    vis.observe(el);
+    return () => { pre.disconnect(); vis.disconnect(); };
   }, []);
 
   return (
@@ -225,7 +229,7 @@ export default function CansScene(props: Props) {
           {props.staticMode ? (
             <StaticCans {...props} />
           ) : (
-            <Physics gravity={[0, -18, 0]} paused={!visible}>
+            <Physics gravity={[0, -26, 0]} paused={!visible}>
               <PhysicsCans {...props} />
             </Physics>
           )}

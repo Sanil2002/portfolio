@@ -5,7 +5,7 @@ import { Experience } from "@/components/sections/Experience";
 import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
 import { Marquee } from "@/components/ui/Marquee";
-import { marquee } from "@/content/content";
+import { marquee, marquee2, marquee3 } from "@/content/content";
 
 export default function Home() {
   return (
@@ -13,10 +13,10 @@ export default function Home() {
       <Hero />
       <Marquee items={marquee} accent />
       <Projects />
-      <Marquee items={["Builds things that ship", "Open to work", "Kerala, India"]} reverse />
+      <Marquee items={marquee2} reverse />
       <Stack />
       <Experience />
-      <Marquee items={["Let's work together", "Full-time", "Freelance"]} accent />
+      <Marquee items={marquee3} accent />
       <Faq />
       <Contact />
     </main>

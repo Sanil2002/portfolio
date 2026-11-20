@@ -54,7 +54,7 @@ npm start          # serve the production build locally
      ],
      stack: ["React", "Node.js", "MongoDB"],
      role: "Solo developer",
-     context: "Personal project",        // or "Built at Netstratum"
+     context: "Personal project",        // or "Client project"
      image: "/covers/my-new-app.svg",
      imageHover: "/covers/my-new-app-alt.svg",
      liveUrl: "https://...",             // optional — delete the line if none
